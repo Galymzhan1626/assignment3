@@ -30,7 +30,9 @@ public class MyHashTable<K, V> {
         chainArr=new MyHashNode[givenSize];
         size=0;
     }
-    private int hash(K key) {};
+    private int hash(K key) {
+        return 0;
+    };
     public void put(K key, V value) {
         int index = hash(key);
         MyHashNode<K, V> head = chainArr[index];
@@ -41,10 +43,50 @@ public class MyHashTable<K, V> {
         head = chainArr[index];
         size++;
     }
+    public V get(K key){
+        int index = hash(key);
+        MyHashNode<K,V> current = chainArr[index];
+        while(current != null){
+            if(current.key.equals(key)){
+                return current.value;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+    public V remove(K key){
+        int index = hash(key);
+        MyHashNode<K,V> current = chainArr[index];
+        MyHashNode<K,V> lastNode = null;
+        while(current != null){
+            if(current.key.equals(key)){
+                if(lastNode != null){
+                    lastNode.next = current.next;
+                }else{
+                    chainArr[index] = current.next;
+                }
+                size--;
+                return current.value;
+            }
+            lastNode = current;
+            current = current.next;
+        }
+        return null;
+    }
 
-
-    public V get(K key) {};
-    public V remove(K key) {};
-    public boolean contains(V value) {};
-    public K getKey(V value){};
+    public boolean contains(V value){
+        for(int i = 0; i < chainArr.length; i++){
+            MyHashNode<K,V> current = chainArr[i];
+            while(current != null){
+                if(current.value.equals(value)){
+                    return true;
+                }
+                current = current.next;
+            }
+        }
+        return false;
+    }
+    public K getKey(V value){
+        return null;
+    };
 }

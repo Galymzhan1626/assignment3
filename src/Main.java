@@ -3,7 +3,7 @@ import com.sun.source.tree.BinaryTree;
 public class Main {
 
     public static void main(String[] args) {
-        BinaryTree binaryTree = new BinaryTree();
+        MyBinarySearchTree binaryTree = new MyBinarySearchTree();
 
         binaryTree.insert(5);
         binaryTree.insert(3);
